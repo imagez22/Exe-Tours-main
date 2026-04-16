@@ -44,6 +44,31 @@
     margin: 30px auto;
   }
 }
+
+@media screen and (max-width: 1440px) {
+	 .containerx {
+	  top: 40%;
+	  bottom: 40%;
+	  transform-style: preserve-3d;
+	}
+	
+	#about_us div {
+		padding: 10px;
+		display: block;
+		align-items: normal;
+	}
+	
+	.cards {
+		position: relative;
+		width: 90vw;
+		height: 100%;
+	}
+	
+	#about-quad {
+		display: none;
+	}
+}
+
 @media only screen and (max-width: 850px) {
   /*events*/
   .row {
@@ -66,6 +91,30 @@
   /*tours*/
   .tours {
     width: 100%;
+  }
+
+  .tours-table {
+    font-size: 0.9rem;
+    overflow-x: auto;
+    display: block;
+    white-space: nowrap;
+  }
+
+  .tours-table th,
+  .tours-table td {
+    padding: 10px;
+    min-width: 120px;
+  }
+
+  .tours-table th:nth-child(3),
+  .tours-table td:nth-child(3) {
+    min-width: 100px;
+  }
+
+  .tours-table .book-btn {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+    min-width: 70px;
   }
 
   /*footer*/
