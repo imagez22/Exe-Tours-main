@@ -364,9 +364,9 @@ section {
 
 /* Tours Table */
 .tours-table {
-  width: 100%;
+  width: 95%;
   border-collapse: collapse;
-  margin: 30px 0;
+  margin: 20px 0;
   background-color: #222;
   color: white;
   border-radius: 8px;
@@ -377,7 +377,7 @@ section {
 
 .tours-table th,
 .tours-table td {
-  padding: 15px;
+  padding: 12px;
   text-align: left;
   border-bottom: 1px solid #444;
 }
