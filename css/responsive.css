@@ -16,27 +16,42 @@
   }
 
   .navbar {
-    padding: 45px;
+    padding: 12px 16px;
+    flex-wrap: wrap;
   }
 
   .logo {
     position: absolute;
-    top: 30px;
-    left: 15px;
+    top: 18px;
+    left: 52px;
+    padding: 0;
+    font-size: clamp(1rem, 4vw, 1.5rem);
+    letter-spacing: 0.18rem;
   }
 
   .nav-links {
+    position: absolute;
+    top: 70px;
+    left: 0;
     flex-direction: column;
     width: 100%;
-    height: 100vh;
+    max-height: calc(100dvh - 70px);
+    height: auto;
+    overflow-y: auto;
     justify-content: center;
     background: #484872;
-    margin-top: -900px;
-    transition: all 0.5s ease;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
   }
 
   .mobile-menu {
-    margin-top: 602px;
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
     border-bottom-right-radius: 30%;
   }
 
@@ -95,9 +110,18 @@
 
   .tours-table {
     font-size: 0.9rem;
-    overflow-x: auto;
-    display: block;
-    white-space: nowrap;
+    min-width: 520px;
+    white-space: normal;
+  }
+
+  #tours .tours-table {
+    min-width: 0;
+  }
+
+  #tours .tours-table th,
+  #tours .tours-table td {
+    min-width: 0;
+    padding: 8px 5px;
   }
 
   .tours-table th,
@@ -124,15 +148,23 @@
   .content-col {
     width: 100%;
   }
+
+  .account-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-panel {
+    width: 100%;
+  }
   #about_us p {
-    width: 70%;
+    width: min(85%, 65ch);
   }
 }
 
 @media screen and (max-width: 770px) {
   #about_us p {
-    width: 85%;
-    padding-top: 7em;
+    width: min(92%, 65ch);
+    padding-top: 3rem;
     margin: auto;
   }
   form,
@@ -147,6 +179,29 @@
     margin: 0 auto;
     text-align: center;
     width: 80%;
+  }
+
+  .contact_us {
+    gap: 1rem;
+  }
+
+  .cbox,
+  form {
+    width: 100%;
+  }
+
+  .auth-actions {
+    align-items: stretch;
+    flex-wrap: wrap;
+  }
+
+  .auth-actions span {
+    flex: 1 1 100%;
+    padding: 0;
+  }
+
+  .auth-submit {
+    width: 100%;
   }
 
   .explore-content .ctn {
@@ -164,6 +219,20 @@
   }
   .c_boxx a p {
     font-size: 17.5px;
+  }
+
+  .logo {
+    font-size: 1rem;
+    letter-spacing: 0.1rem;
+  }
+
+  .header-content {
+    padding: 2rem 1rem;
+    margin-bottom: 5vh;
+  }
+
+  .social {
+    width: 100%;
   }
 }
 @media screen and (max-width: 400px) {

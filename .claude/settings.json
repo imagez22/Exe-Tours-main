@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm -v)",
+      "Bash(node -e \"const fs=require\\('fs'\\); const crypto=require\\('crypto'\\); let env=fs.readFileSync\\('.env','utf8'\\); env=env.replace\\('JWT_SECRET=', 'JWT_SECRET='+crypto.randomBytes\\(32\\).toString\\('hex'\\)\\); fs.writeFileSync\\('.env', env\\);\")",
+      "Bash(node server/index.js)",
+      "Bash(disown)",
+      "Bash(wget -qO- http://localhost:3000/api/tours)",
+      "Bash(wget -qO- http://localhost:3000/api/events)",
+      "Bash(rm -f /tmp/exetours-server.log)",
+      "Bash(nohup node server/index.js)",
+      "Bash(wget -qO- http://localhost:3000/manifest.json)",
+      "Bash(wget -qO- http://localhost:3000/sw.js)",
+      "Bash(wget -qS --spider http://localhost:3000/login.html)",
+      "Bash(wget -qS --spider http://localhost:3000/account.html)",
+      "Bash(wget -qS --spider http://localhost:3000/admin.html)",
+      "Bash(wget -qS --spider http://localhost:3000/js/site.js)",
+      "Bash(wget -qS --spider http://localhost:3000/js/api.js)",
+      "Bash(pkill -f \"node server/index.js\")"
+    ]
+  }
+}

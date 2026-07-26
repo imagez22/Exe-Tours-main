@@ -1,0 +1,27 @@
+{
+  "name": "exe-tours",
+  "version": "1.0.0",
+  "description": "EXE TOURS tourism website with Express + SQLite backend",
+  "main": "server/index.js",
+  "scripts": {
+    "prestart": "npm run migrate",
+    "start": "node server/index.js",
+    "dev": "nodemon server/index.js",
+    "migrate": "node server/db/migrate.js",
+    "seed": "node server/db/seed.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "better-sqlite3": "^11.3.0",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.9.14"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}

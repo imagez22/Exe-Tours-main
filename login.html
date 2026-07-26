@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Login - EXE TOURS</title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+        />
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/responsive.css" />
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#fc036b" />
+        <style>
+            body {
+                min-height: 100vh;
+                background: linear-gradient(135deg, #0f172a 0%, #1d4ed8 45%, #ec4899 100%);
+                color: #f8fafc;
+            }
+            .auth-wrap {
+                max-width: 460px;
+                margin: 110px auto 80px;
+                padding: 0 1em;
+            }
+            .auth-card {
+                background: rgba(15, 23, 42, 0.78);
+                border: 1px solid rgba(255,255,255,0.12);
+                box-shadow: 0 25px 60px rgba(0,0,0,0.35);
+                border-radius: 1.25rem;
+                padding: 2rem;
+                backdrop-filter: blur(18px);
+            }
+            .auth-pill {
+                display: inline-flex;
+                gap: 0.45rem;
+                padding: 0.35rem 0.7rem;
+                border-radius: 999px;
+                background: rgba(255,255,255,0.12);
+                color: #bfdbfe;
+                font-size: 0.8rem;
+                margin-bottom: 1rem;
+            }
+            .auth-tabs {
+                display: flex;
+                gap: 0.6rem;
+                margin-bottom: 1rem;
+            }
+            .auth-tabs button {
+                flex: 1;
+                padding: 0.8rem 1rem;
+                border-radius: 999px;
+                border: 1px solid rgba(255,255,255,0.18);
+                color: #f8fafc;
+                cursor: pointer;
+                font-family: var(--ff-montserrat);
+                background: rgba(255,255,255,0.08);
+                transition: all 0.2s ease;
+            }
+            .auth-tabs button.active {
+                background: linear-gradient(135deg, #fc036b, #ff5f9e);
+                box-shadow: 0 10px 20px rgba(252, 3, 107, 0.25);
+            }
+            .auth-form {
+                display: none;
+            }
+            .auth-form.active {
+                display: block;
+                width: 100%;
+            }
+            .auth-field {
+                position: relative;
+                margin: 0.9rem 0;
+            }
+            .auth-field input {
+                width: 100%;
+                padding: 0.95rem 1rem;
+                border-radius: 0.85rem;
+                border: 1px solid rgba(255,255,255,0.14);
+                background: rgba(255,255,255,0.94);
+                color: #0f172a;
+                font-size: 0.95rem;
+            }
+            .auth-field input:focus {
+                outline: 2px solid rgba(252, 3, 107, 0.35);
+                border-color: #fc036b;
+            }
+            .auth-field button {
+                position: absolute;
+                right: 0.7rem;
+                top: 50%;
+                transform: translateY(-50%);
+                border: none;
+                background: transparent;
+                color: #64748b;
+                cursor: pointer;
+            }
+            .auth-actions {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 0.75rem;
+                margin-top: 0.8rem;
+            }
+            .auth-submit {
+                border: none;
+                padding: 0.9rem 1.2rem;
+                border-radius: 999px;
+                background: linear-gradient(135deg, #fc036b, #ff5f9e);
+                color: white;
+                font-weight: 700;
+                cursor: pointer;
+                min-width: 120px;
+            }
+            .auth-submit:disabled {
+                opacity: 0.7;
+                cursor: wait;
+            }
+            .auth-message {
+                margin: 0.8rem 0 0;
+                padding: 0.8rem 1rem;
+                border-radius: 0.8rem;
+                display: none;
+                font-size: 0.95rem;
+            }
+            .auth-message.error {
+                display: block;
+                background: rgba(248, 113, 113, 0.16);
+                color: #fecaca;
+            }
+            .auth-message.success {
+                display: block;
+                background: rgba(74, 222, 128, 0.16);
+                color: #dcfce7;
+            }
+            .auth-footnote {
+                margin-top: 1rem;
+                color: #cbd5e1;
+                font-size: 0.9rem;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="navbar glass" style="height: 70px">
+            <span
+                ><a href="index.html" style="display: flex; align-items: center"
+                    ><img
+                        class="img2"
+                        src="./img/mountain.png"
+                        width="40"
+                        style="margin: -25px -10px -25px -20px"
+                    />
+                    <h1 class="logo">&nbsp;EXETOURS</h1></a
+                ></span
+            >
+        </nav>
+
+        <div class="auth-wrap">
+            <div class="auth-card">
+                <div class="title" style="margin-bottom: 1em">
+                    <div class="auth-pill"><i class="fa fa-compass"></i> Journey starts here</div>
+                    <h1 class="font-color">Welcome back</h1>
+                    <div class="line"></div>
+                </div>
+
+                <div class="auth-tabs">
+                    <button type="button" id="tab-login" class="active">Login</button>
+                    <button type="button" id="tab-signup">Sign Up</button>
+                </div>
+
+                <p class="auth-message" id="auth-message" role="status" aria-live="polite"></p>
+
+                <form class="cform auth-form active" id="login-form">
+                    <div class="auth-field">
+                        <input type="email" id="login-email" placeholder="Your Email" autocomplete="email" required />
+                    </div>
+                    <div class="auth-field">
+                        <input type="password" id="login-password" placeholder="Password" autocomplete="current-password" required />
+                        <button type="button" data-toggle="login-password" aria-label="Show password"><i class="fa fa-eye"></i></button>
+                    </div>
+                    <div class="auth-actions">
+                        <span style="color: #cbd5e1; font-size: 0.9rem;">Secure booking and account access</span>
+                        <button class="auth-submit" type="submit">Login</button>
+                    </div>
+                </form>
+
+                <form class="cform auth-form" id="signup-form">
+                    <div class="auth-field">
+                        <input type="text" id="signup-name" placeholder="Your Name" autocomplete="name" required />
+                    </div>
+                    <div class="auth-field">
+                        <input type="email" id="signup-email" placeholder="Your Email" autocomplete="email" required />
+                    </div>
+                    <div class="auth-field">
+                        <input type="password" id="signup-password" placeholder="Password (min 8 characters)" autocomplete="new-password" required />
+                        <button type="button" data-toggle="signup-password" aria-label="Show password"><i class="fa fa-eye"></i></button>
+                    </div>
+                    <div class="auth-field">
+                        <input type="password" id="signup-confirm-password" placeholder="Confirm password" autocomplete="new-password" required />
+                        <button type="button" data-toggle="signup-confirm-password" aria-label="Show password"><i class="fa fa-eye"></i></button>
+                    </div>
+                    <div class="auth-actions">
+                        <span style="color: #cbd5e1; font-size: 0.9rem;">Welcome email included on signup</span>
+                        <button class="auth-submit" type="submit">Create account</button>
+                    </div>
+                </form>
+
+                <p class="auth-footnote">By continuing, you agree to plan unforgettable experiences with EXE TOURS.</p>
+            </div>
+        </div>
+
+        <script src="js/api.js"></script>
+        <script src="js/auth.js"></script>
+    </body>
+</html>

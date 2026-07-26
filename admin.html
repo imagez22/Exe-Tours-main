@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Admin - EXE TOURS</title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+        />
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/responsive.css" />
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#fc036b" />
+        <style>
+            .admin-wrap {
+                max-width: 1100px;
+                margin: 110px auto 80px;
+                padding: 0 1em;
+            }
+            .admin-tabs {
+                display: flex;
+                flex-wrap: wrap;
+                margin-bottom: 1.5em;
+            }
+            .admin-tabs button {
+                padding: 10px 20px;
+                margin: 0 8px 8px 0;
+                background: transparent;
+                border: 2px solid #fc036b;
+                border-radius: 100vmax;
+                color: whitesmoke;
+                cursor: pointer;
+                font-family: var(--ff-montserrat);
+            }
+            .admin-tabs button.active {
+                background: #fc036b;
+            }
+            .admin-panel {
+                display: none;
+            }
+            .admin-panel.active {
+                display: block;
+            }
+            .admin-panel .cform {
+                width: 100%;
+                margin-bottom: 2em;
+                max-width: 500px;
+            }
+            .admin-panel .cform input[type="text"],
+            .admin-panel .cform input[type="number"],
+            .admin-panel .cform textarea,
+            .admin-panel .cform input[type="file"] {
+                width: 90%;
+                margin: 0.6em 1em;
+                padding: 10px;
+                border-radius: 4px;
+                border: none;
+                display: block;
+            }
+            .row-actions button {
+                background: transparent;
+                border: 1px solid whitesmoke;
+                color: whitesmoke;
+                border-radius: 4px;
+                padding: 4px 10px;
+                margin-right: 6px;
+                cursor: pointer;
+            }
+            .row-actions button:hover {
+                border-color: #fc036b;
+                color: #fc036b;
+            }
+            #admin-error {
+                display: none;
+                color: #ff8080;
+                margin-bottom: 1em;
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="navbar glass" style="height: 70px">
+            <span
+                ><a href="index.html" style="display: flex; align-items: center"
+                    ><img
+                        class="img2"
+                        src="./img/mountain.png"
+                        width="40"
+                        style="margin: -25px -10px -25px -20px"
+                    />
+                    <h1 class="logo">&nbsp;EXETOURS ADMIN</h1></a
+                ></span
+            >
+        </nav>
+
+        <div class="admin-wrap">
+            <p id="admin-error"></p>
+
+            <div class="admin-tabs">
+                <button type="button" class="admin-tab-btn active" data-panel="panel-tours">Tours</button>
+                <button type="button" class="admin-tab-btn" data-panel="panel-events">Events</button>
+                <button type="button" class="admin-tab-btn" data-panel="panel-bookings">Bookings</button>
+                <button type="button" class="admin-tab-btn" data-panel="panel-messages">Messages</button>
+            </div>
+
+            <section class="admin-panel active" id="panel-tours">
+                <h2 class="font-color">Add Tour</h2>
+                <form class="cform" id="tour-form" enctype="multipart/form-data">
+                    <input type="text" name="date_label" placeholder="Date label (e.g. Sat 7th June 2026)" required />
+                    <input type="text" name="destination" placeholder="Destination" required />
+                    <textarea name="description" placeholder="Description"></textarea>
+                    <input type="number" name="price_pesewas" placeholder="Price in GHS pesewas (e.g. 15000 = GHS 150)" />
+                    <input type="file" name="image" accept="image/*" />
+                    <input class="crow-s" type="submit" value="Add Tour" style="width: auto; margin: 1em" />
+                </form>
+                <div class="table-wrap">
+                    <table class="tours-table" id="tours-table">
+                        <thead><tr><th>Date</th><th>Destination</th><th>Price</th><th>Actions</th></tr></thead>
+                        <tbody id="tours-admin-tbody"><tr><td colspan="4">Loading...</td></tr></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="admin-panel" id="panel-events">
+                <h2 class="font-color">Add Event</h2>
+                <form class="cform" id="event-form" enctype="multipart/form-data">
+                    <input type="text" name="title" placeholder="Title" required />
+                    <textarea name="description" placeholder="Description" required></textarea>
+                    <input type="file" name="image" accept="image/*" />
+                    <input class="crow-s" type="submit" value="Add Event" style="width: auto; margin: 1em" />
+                </form>
+                <div class="table-wrap">
+                    <table class="tours-table" id="events-table">
+                        <thead><tr><th>Title</th><th>Description</th><th>Actions</th></tr></thead>
+                        <tbody id="events-admin-tbody"><tr><td colspan="3">Loading...</td></tr></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="admin-panel" id="panel-bookings">
+                <h2 class="font-color">All Bookings</h2>
+                <div class="table-wrap">
+                    <table class="tours-table" id="bookings-table">
+                        <thead><tr><th>Tour</th><th>Customer</th><th>Amount</th><th>Status</th><th>Date</th></tr></thead>
+                        <tbody id="bookings-admin-tbody"><tr><td colspan="5">Loading...</td></tr></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="admin-panel" id="panel-messages">
+                <h2 class="font-color">Contact Messages</h2>
+                <div class="table-wrap">
+                    <table class="tours-table" id="messages-table">
+                        <thead><tr><th>Name</th><th>Email</th><th>Country</th><th>Remarks</th><th>Date</th></tr></thead>
+                        <tbody id="messages-admin-tbody"><tr><td colspan="5">Loading...</td></tr></tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+
+        <script src="js/api.js"></script>
+        <script src="js/admin.js"></script>
+    </body>
+</html>

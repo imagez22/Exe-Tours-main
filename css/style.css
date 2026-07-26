@@ -45,7 +45,6 @@ ul {
 
 span {
   color: #7c7c7c;
-  padding: 0px 40px;
 }
 
 /* .active {
@@ -93,6 +92,7 @@ html {
   padding: 12px 5px;
   z-index: 10;
   color: whitesmoke;
+  min-height: 70px;
 }
 
 .logo {
@@ -103,8 +103,7 @@ html {
   padding: 0 1.2rem;
   font-weight: 300;
   color: rgb(254, 252, 252); 
-  
-  
+  line-height: 1.1;
 }
 
 
@@ -134,7 +133,8 @@ html {
 
 header {
   width: 100vw;
-  height: 100vh;
+  min-height: 100dvh;
+  height: auto;
   background-image: url("../img/bg.png");
   background-position: bottom;
   background-attachment: fixed;
@@ -151,7 +151,7 @@ header {
   text-align: center;
   z-index: 1;
   padding: 4rem;
-  margin-bottom: 150px;
+  margin: 0 auto 10vh;
 }
 
 .header-content a {
@@ -216,7 +216,7 @@ section {
 
 .card {
   cursor: pointer;
-  height :400px
+  height: auto;
 }
 
 .row .col {
@@ -224,7 +224,8 @@ section {
   flex-direction: column;
   align-items: center;
   margin: 10px;
-  height: 450px;
+  min-height: 0;
+  height: auto;
 }
 
 .row .col img {
@@ -263,7 +264,8 @@ section {
 /* explore */
 .explore {
   width: 100%;
-  height: 100vh;
+  min-height: 100dvh;
+  height: auto;
   background-image: url(../img/bg2.png);
   background-attachment: fixed;
   background-position: center;
@@ -279,7 +281,7 @@ section {
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin-left: 8rem;
+  width: min(100% - 2rem, 900px);
   position: relative;
   z-index: 1;
   padding: 2rem 17px;
@@ -364,15 +366,24 @@ section {
 
 /* Tours Table */
 .tours-table {
-  width: 95%;
+  width: 100%;
+  min-width: 520px;
   border-collapse: collapse;
   margin: 20px 0;
   background-color: #222;
   color: white;
   border-radius: 8px;
-  overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   font-size: 1rem;
+}
+
+.table-wrap {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 8px;
 }
 
 .tours-table th,
@@ -380,6 +391,7 @@ section {
   padding: 12px;
   text-align: left;
   border-bottom: 1px solid #444;
+  overflow-wrap: anywhere;
 }
 
 .tours-table th {
@@ -445,7 +457,8 @@ section {
 #about_us {
   background: url("https://awe365.com/wp-content/uploads/2013/07/adventure-sports-hang-gliding-flickrcc-image-by-Steve-Slater.jpg");
   width: 100%;
-  height: 630px;
+  min-height: 630px;
+  height: auto;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -474,12 +487,12 @@ section {
 }
 
 #about_us p {
-  width: 43em;
+  width: min(65ch, calc(100% - 2rem));
   color: white;
   text-align: justify;
-  padding-top: 14em;
+  padding-top: clamp(3rem, 14vw, 14em);
   font-family: "Work Sans", sans-serif;
-  margin-left: 6em;
+  margin: 0 auto;
 }
 
 #about_us p::first-letter {
@@ -559,6 +572,7 @@ section {
   margin-top: 3rem;
   display: flex;
   font-family: var(--ff-roboto);
+  gap: 2rem;
 }
 
 form {
@@ -567,7 +581,7 @@ form {
 
 .cbox {
   width: 45%;
-  margin-left: 70px;
+  margin-left: 0;
   padding: 10px 30px;
 }
 
@@ -602,6 +616,7 @@ form {
   display: flex;
   border-radius: 2em;
   align-items: center;
+  min-width: 0;
   border: #fc036b 0.1em solid;
   font-size: 1em;
 }
@@ -678,6 +693,8 @@ input[type="submit"]:hover {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .crow-message {
@@ -702,13 +719,13 @@ input[type="submit"]:hover {
 }
 
 #name {
-  width: 90%;
-  margin: 1em;
+  width: 100%;
+  margin: 0.6em 0;
 }
 
 #email {
-  width: 90%;
-  margin: 1em;
+  width: 100%;
+  margin: 0.6em 0;
 }
 
 .crow:after,
@@ -1012,7 +1029,7 @@ input[type=radio] {
 
 .cards {
   position: relative;
-  width: 100vh;
+  width: min(100%, 900px);
   height: 100%;
 }
 

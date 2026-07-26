@@ -1,0 +1,22 @@
+{
+    "name": "EXE TOURS",
+    "short_name": "ExeTours",
+    "description": "Curated cultural tours, school excursions, and private journeys with EXE TOURS.",
+    "start_url": "/index.html",
+    "scope": "/",
+    "display": "standalone",
+    "background_color": "#000000",
+    "theme_color": "#fc036b",
+    "icons": [
+        {
+            "src": "img/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "img/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

@@ -132,29 +132,26 @@ function updateNav() {
 window.addEventListener("scroll", updateNav);
 
 // Form submission handling
-document.querySelector('.cform').addEventListener('submit', function(e) {
+document.querySelector('.cform').addEventListener('submit', async function(e) {
     e.preventDefault();
-    
+
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
     const country = document.getElementById('country').value;
     const remarks = document.getElementById('remarks').value;
-    
-    const subject = 'Contact from EXE Tours Website';
-    const body = `Name: ${name}\nEmail: ${email}\nCountry: ${country}\n\nRemarks:\n${remarks}`;
-    
-    const mailtoLink = `mailto:aklijoshuaericy@gmail.com,admin@exetours.world?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    
-    window.location.href = mailtoLink;
-    
-    // Show popup notice
-    alert('Email client opened with your message!');
-    
-    // Show success message
+
     const successMessage = document.getElementById('success-message');
-    successMessage.style.display = 'block';
-    
-    // Hide after 3 seconds
+
+    try {
+        await api.post('/contact', { name, email, country, remarks });
+        successMessage.textContent = 'Message sent! We will get back to you soon.';
+        successMessage.style.display = 'block';
+        this.reset();
+    } catch (err) {
+        successMessage.textContent = `Could not send message: ${err.message}`;
+        successMessage.style.display = 'block';
+    }
+
     setTimeout(() => {
         successMessage.style.display = 'none';
     }, 3000);

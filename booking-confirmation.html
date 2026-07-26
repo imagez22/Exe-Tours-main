@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Booking Confirmation - EXE TOURS</title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+        />
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/responsive.css" />
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#fc036b" />
+        <style>
+            .confirm-wrap {
+                max-width: 500px;
+                margin: 140px auto;
+                padding: 2em;
+                text-align: center;
+                background-color: #222;
+                border-radius: 0.5rem;
+            }
+            .confirm-wrap a {
+                color: #fc036b;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="confirm-wrap" id="confirm-wrap">
+            <h1 class="font-color">Checking your payment...</h1>
+        </div>
+        <script src="js/api.js"></script>
+        <script>
+            (async function () {
+                const wrap = document.getElementById("confirm-wrap");
+                const reference = new URLSearchParams(window.location.search).get("reference");
+                if (!reference) {
+                    wrap.innerHTML = "<h1>Missing booking reference.</h1>";
+                    return;
+                }
+                try {
+                    const booking = await api.get(`/payments/verify/${encodeURIComponent(reference)}`);
+                    if (booking.status === "paid") {
+                        wrap.innerHTML =
+                            '<h1 class="font-color">Booking confirmed!</h1><p>Thank you, your payment was successful.</p><a href="account.html">View my bookings</a>';
+                    } else {
+                        wrap.innerHTML =
+                            '<h1 class="font-color">Payment not completed</h1><p>Status: ' +
+                            booking.status +
+                            '</p><a href="index.html#tours">Back to tours</a>';
+                    }
+                } catch (err) {
+                    wrap.innerHTML = `<h1 class="font-color">Could not verify payment</h1><p>${err.message}</p><a href="login.html">Login</a>`;
+                }
+            })();
+        </script>
+    </body>
+</html>
